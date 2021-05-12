@@ -8,8 +8,8 @@
 import UIKit
 import AVFoundation
 
-class PlaybackAudioViewController: UIViewController {
-
+class PlaybackAudioViewController: UIViewController, AudioPlayerDelegate {
+    
     var audioURL: URL!
 
     @IBOutlet var fastButton: UIButton!
@@ -20,10 +20,7 @@ class PlaybackAudioViewController: UIViewController {
     @IBOutlet var reverbButton: UIButton!
     @IBOutlet var stopButton: UIButton!
     
-    var audioFile:AVAudioFile!
-    var audioEngine:AVAudioEngine!
-    var audioPlayerNode: AVAudioPlayerNode!
-    var stopTimer: Timer!
+    var audioPlayer: AudioPlayer!
     
     enum AudioPlaybackState {
         case playing
@@ -43,40 +40,39 @@ class PlaybackAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        configureUI(state: .notPlaying)
         configButtonAlignment()
         
-        setupAudio()
+        self.showAlert(AudioPlayerError.audioNodeError)
+    }
+    
+    func audioStartedPlaying() {
+        print("audioStartedPlaying")
+    }
+    func audioFinishedPlaying() {
+        print("audioFinishedPlaying")
+        configureUI(state: .notPlaying)
+    }
+    func audioPlayerError(_ error: AudioPlayerError) {
+        print("audioPlayerError")
     }
     
     @IBAction func playButtonPressed(_ sender: UIButton) {
         
-        //let effect = AudioEffect(rawValue: sender.tag)
-        guard let effect = AudioEffect(rawValue: sender.tag) else {
+        configureUI(state: .playing)
+
+        guard let audioEffect = AudioPlayerEffect(rawValue: sender.tag) else {
             return
         }
         
-        switch effect {
-        case .fast:
-            playSound(rate: 1.5)
-        case .slow:
-            playSound(rate: 0.5)
-        case .highPitch:
-            playSound(pitch: 1000)
-        case .lowPitch:
-            playSound(pitch: -1000)
-        case .echo:
-            playSound(echo: true)
-        case .reverb:
-            playSound(reverb: true)
-        }
-        
-        configureUI(state: .playing)
+        audioPlayer = AudioPlayer(url: audioURL, audioEffect: audioEffect)
+        audioPlayer.delegate = self
+        audioPlayer.playAudio()
     }
     
     @IBAction func stopButtonPressed(_ sender: UIButton) {
-        stopAudio()
         configureUI(state: .notPlaying)
+        audioPlayer.stopAudio()
     }
     
     func configureUI(state: AudioPlaybackState) {

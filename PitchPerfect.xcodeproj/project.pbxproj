@@ -14,7 +14,9 @@
 		700DB14A2649CDF500A177FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 700DB1492649CDF500A177FD /* Assets.xcassets */; };
 		700DB14D2649CDF500A177FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700DB14B2649CDF500A177FD /* LaunchScreen.storyboard */; };
 		700DB1552649D3AF00A177FD /* PlaybackAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1542649D3AF00A177FD /* PlaybackAudioViewController.swift */; };
-		70D2EBCF264AF4A3000333C7 /* PlaybackAudioViewController+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBCE264AF4A3000333C7 /* PlaybackAudioViewController+Audio.swift */; };
+		70D2EBD1264B0D24000333C7 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBD0264B0D24000333C7 /* AudioPlayer.swift */; };
+		70D2EBD5264B5E32000333C7 /* AudioPlayer-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBD4264B5E32000333C7 /* AudioPlayer-Constants.swift */; };
+		70D2EBD7264B6144000333C7 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBD6264B6144000333C7 /* UIViewController+Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +29,9 @@
 		700DB14C2649CDF500A177FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		700DB14E2649CDF500A177FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		700DB1542649D3AF00A177FD /* PlaybackAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackAudioViewController.swift; sourceTree = "<group>"; };
-		70D2EBCE264AF4A3000333C7 /* PlaybackAudioViewController+Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlaybackAudioViewController+Audio.swift"; sourceTree = "<group>"; };
+		70D2EBD0264B0D24000333C7 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		70D2EBD4264B5E32000333C7 /* AudioPlayer-Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer-Constants.swift"; sourceTree = "<group>"; };
+		70D2EBD6264B6144000333C7 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +68,9 @@
 				700DB1422649CDF400A177FD /* SceneDelegate.swift */,
 				700DB1442649CDF400A177FD /* RecordAudioViewController.swift */,
 				700DB1542649D3AF00A177FD /* PlaybackAudioViewController.swift */,
-				70D2EBCE264AF4A3000333C7 /* PlaybackAudioViewController+Audio.swift */,
+				70D2EBD0264B0D24000333C7 /* AudioPlayer.swift */,
+				70D2EBD4264B5E32000333C7 /* AudioPlayer-Constants.swift */,
+				70D2EBD6264B6144000333C7 /* UIViewController+Alert.swift */,
 				700DB1462649CDF400A177FD /* Main.storyboard */,
 				700DB1492649CDF500A177FD /* Assets.xcassets */,
 				700DB14B2649CDF500A177FD /* LaunchScreen.storyboard */,
@@ -143,11 +149,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70D2EBCF264AF4A3000333C7 /* PlaybackAudioViewController+Audio.swift in Sources */,
 				700DB1552649D3AF00A177FD /* PlaybackAudioViewController.swift in Sources */,
 				700DB1452649CDF400A177FD /* RecordAudioViewController.swift in Sources */,
 				700DB1412649CDF400A177FD /* AppDelegate.swift in Sources */,
+				70D2EBD5264B5E32000333C7 /* AudioPlayer-Constants.swift in Sources */,
 				700DB1432649CDF400A177FD /* SceneDelegate.swift in Sources */,
+				70D2EBD1264B0D24000333C7 /* AudioPlayer.swift in Sources */,
+				70D2EBD7264B6144000333C7 /* UIViewController+Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
