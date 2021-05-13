@@ -1,17 +1,23 @@
 //
-//  PlaybackAudioViewController.swift
+//  AudioPlaybackViewController.swift
 //  PitchPerfect
 //
 //  Created by 1203 Broadway on 5/10/21.
 //
+/*
+About AudioPlaybackViewController.swift
+ UIViewController subclass to handle starting and stopping audio playback and selecting effect to apply to audio
+ */
 
 import UIKit
 import AVFoundation
 
-class PlaybackAudioViewController: UIViewController, AudioPlayerDelegate {
+class AudioPlaybackViewController: UIViewController, AudioPlayerDelegate {
     
+    // reference to audio url to be played back
     var audioURL: URL!
 
+    // UI elements
     @IBOutlet var fastButton: UIButton!
     @IBOutlet var slowButton: UIButton!
     @IBOutlet var highPitchButton: UIButton!
@@ -20,63 +26,48 @@ class PlaybackAudioViewController: UIViewController, AudioPlayerDelegate {
     @IBOutlet var reverbButton: UIButton!
     @IBOutlet var stopButton: UIButton!
     
+    // reference to AudioPlayer class. Handles details of audio playback
     var audioPlayer: AudioPlayer!
     
+    // enum of playback state. Used to steer UI enable/disable states
     enum AudioPlaybackState {
         case playing
         case notPlaying
         case unknownPlaybackCondition
     }
     
-    enum AudioEffect: Int {
-        case fast = 0
-        case slow
-        case highPitch
-        case lowPitch
-        case echo
-        case reverb
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // navbar ttitle and UI config
+        title = "PitchPerfect - Playback"
         configureUI(state: .notPlaying)
-        configButtonAlignment()
-        
-        self.showAlert(AudioPlayerError.audioNodeError)
+        configButtonAlignment() // needed for smaller iOS devices to maintain proper object view aspect
     }
     
-    func audioStartedPlaying() {
-        print("audioStartedPlaying")
-    }
-    func audioFinishedPlaying() {
-        print("audioFinishedPlaying")
-        configureUI(state: .notPlaying)
-    }
-    func audioPlayerError(_ error: AudioPlayerError) {
-        print("audioPlayerError")
-    }
-    
+    // play button pressed
     @IBAction func playButtonPressed(_ sender: UIButton) {
         
+        // config UI and start the audio
         configureUI(state: .playing)
-
         guard let audioEffect = AudioPlayerEffect(rawValue: sender.tag) else {
             return
         }
-        
         audioPlayer = AudioPlayer(url: audioURL, audioEffect: audioEffect)
         audioPlayer.delegate = self
         audioPlayer.playAudio()
     }
     
+    // stop button pressed
     @IBAction func stopButtonPressed(_ sender: UIButton) {
+        
+        // config UI and stop the audio
         configureUI(state: .notPlaying)
         audioPlayer.stopAudio()
     }
     
+    // helper function to set the view UI objects
     func configureUI(state: AudioPlaybackState) {
-     
         switch state {
         case .notPlaying:
             slowButton.isEnabled = true
@@ -105,6 +96,7 @@ class PlaybackAudioViewController: UIViewController, AudioPlayerDelegate {
         }
     }
     
+    // helper function to set aspect fit of view UI objects
     func configButtonAlignment() {
         // fix button streching on small iOS devices when in landscape
         slowButton.contentMode = .center
@@ -121,5 +113,15 @@ class PlaybackAudioViewController: UIViewController, AudioPlayerDelegate {
         reverbButton.imageView?.contentMode = .scaleAspectFit
         stopButton.contentMode = .center
         stopButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    // MARK: AudioPlayerDelegate Functions
+    func audioPlayerError(_ error: AudioPlayerError) {
+        configureUI(state: .unknownPlaybackCondition)
+        self.showAlert(error)
+    }
+    
+    func audioFinishedPlaying() {
+        configureUI(state: .notPlaying)
     }
 }

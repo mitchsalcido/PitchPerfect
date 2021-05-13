@@ -9,29 +9,35 @@
 /* Begin PBXBuildFile section */
 		700DB1412649CDF400A177FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1402649CDF400A177FD /* AppDelegate.swift */; };
 		700DB1432649CDF400A177FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1422649CDF400A177FD /* SceneDelegate.swift */; };
-		700DB1452649CDF400A177FD /* RecordAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1442649CDF400A177FD /* RecordAudioViewController.swift */; };
+		700DB1452649CDF400A177FD /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1442649CDF400A177FD /* AudioRecorderViewController.swift */; };
 		700DB1482649CDF400A177FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700DB1462649CDF400A177FD /* Main.storyboard */; };
 		700DB14A2649CDF500A177FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 700DB1492649CDF500A177FD /* Assets.xcassets */; };
 		700DB14D2649CDF500A177FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700DB14B2649CDF500A177FD /* LaunchScreen.storyboard */; };
-		700DB1552649D3AF00A177FD /* PlaybackAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1542649D3AF00A177FD /* PlaybackAudioViewController.swift */; };
+		700DB1552649D3AF00A177FD /* AudioPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700DB1542649D3AF00A177FD /* AudioPlaybackViewController.swift */; };
 		70D2EBD1264B0D24000333C7 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBD0264B0D24000333C7 /* AudioPlayer.swift */; };
 		70D2EBD5264B5E32000333C7 /* AudioPlayer-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBD4264B5E32000333C7 /* AudioPlayer-Constants.swift */; };
 		70D2EBD7264B6144000333C7 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D2EBD6264B6144000333C7 /* UIViewController+Alert.swift */; };
+		70F8E9F2264DA14400114721 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F8E9F1264DA14400114721 /* AudioRecorder.swift */; };
+		70F8E9F4264DA26100114721 /* AudioRecorder-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F8E9F3264DA26100114721 /* AudioRecorder-Constants.swift */; };
+		70F8E9F6264DC7AC00114721 /* AboutPitchPerfect.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 70F8E9F5264DC7AC00114721 /* AboutPitchPerfect.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		700DB13D2649CDF400A177FD /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		700DB1402649CDF400A177FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		700DB1422649CDF400A177FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		700DB1442649CDF400A177FD /* RecordAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAudioViewController.swift; sourceTree = "<group>"; };
+		700DB1442649CDF400A177FD /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
 		700DB1472649CDF400A177FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		700DB1492649CDF500A177FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		700DB14C2649CDF500A177FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		700DB14E2649CDF500A177FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		700DB1542649D3AF00A177FD /* PlaybackAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackAudioViewController.swift; sourceTree = "<group>"; };
+		700DB1542649D3AF00A177FD /* AudioPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackViewController.swift; sourceTree = "<group>"; };
 		70D2EBD0264B0D24000333C7 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		70D2EBD4264B5E32000333C7 /* AudioPlayer-Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer-Constants.swift"; sourceTree = "<group>"; };
 		70D2EBD6264B6144000333C7 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		70F8E9F1264DA14400114721 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		70F8E9F3264DA26100114721 /* AudioRecorder-Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioRecorder-Constants.swift"; sourceTree = "<group>"; };
+		70F8E9F5264DC7AC00114721 /* AboutPitchPerfect.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = AboutPitchPerfect.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +70,13 @@
 		700DB13F2649CDF400A177FD /* PitchPerfect */ = {
 			isa = PBXGroup;
 			children = (
+				70F8E9F5264DC7AC00114721 /* AboutPitchPerfect.rtf */,
 				700DB1402649CDF400A177FD /* AppDelegate.swift */,
 				700DB1422649CDF400A177FD /* SceneDelegate.swift */,
-				700DB1442649CDF400A177FD /* RecordAudioViewController.swift */,
-				700DB1542649D3AF00A177FD /* PlaybackAudioViewController.swift */,
+				700DB1442649CDF400A177FD /* AudioRecorderViewController.swift */,
+				70F8E9F1264DA14400114721 /* AudioRecorder.swift */,
+				70F8E9F3264DA26100114721 /* AudioRecorder-Constants.swift */,
+				700DB1542649D3AF00A177FD /* AudioPlaybackViewController.swift */,
 				70D2EBD0264B0D24000333C7 /* AudioPlayer.swift */,
 				70D2EBD4264B5E32000333C7 /* AudioPlayer-Constants.swift */,
 				70D2EBD6264B6144000333C7 /* UIViewController+Alert.swift */,
@@ -139,6 +148,7 @@
 				700DB14D2649CDF500A177FD /* LaunchScreen.storyboard in Resources */,
 				700DB14A2649CDF500A177FD /* Assets.xcassets in Resources */,
 				700DB1482649CDF400A177FD /* Main.storyboard in Resources */,
+				70F8E9F6264DC7AC00114721 /* AboutPitchPerfect.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,12 +159,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				700DB1552649D3AF00A177FD /* PlaybackAudioViewController.swift in Sources */,
-				700DB1452649CDF400A177FD /* RecordAudioViewController.swift in Sources */,
+				700DB1552649D3AF00A177FD /* AudioPlaybackViewController.swift in Sources */,
+				700DB1452649CDF400A177FD /* AudioRecorderViewController.swift in Sources */,
 				700DB1412649CDF400A177FD /* AppDelegate.swift in Sources */,
 				70D2EBD5264B5E32000333C7 /* AudioPlayer-Constants.swift in Sources */,
 				700DB1432649CDF400A177FD /* SceneDelegate.swift in Sources */,
+				70F8E9F4264DA26100114721 /* AudioRecorder-Constants.swift in Sources */,
 				70D2EBD1264B0D24000333C7 /* AudioPlayer.swift in Sources */,
+				70F8E9F2264DA14400114721 /* AudioRecorder.swift in Sources */,
 				70D2EBD7264B6144000333C7 /* UIViewController+Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -287,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -4,30 +4,40 @@
 //
 //  Created by 1203 Broadway on 5/11/21.
 //
+/*
+About AudioPlayer.swift
+ Class to handle audio playback. Requires url and audio effect which are provided at class initialization
+ */
 
 import AVFoundation
 
 class AudioPlayer {
     
+    // ref to delegate
     var delegate: AudioPlayerDelegate!
     
+    // url and audioEffect, provided at init
     private let url: URL!
     private let audioEffect: AudioPlayerEffect!
+    
+    // audio playback properties
     private var audioFile:AVAudioFile!
     private var audioEngine:AVAudioEngine!
     private var audioPlayerNode: AVAudioPlayerNode!
-    private var stopTimer: Timer!
+    private var stopTimer: Timer!   // used for stop playing timer, audio time-out
     
+    // designated init, requires url and audio effect
     init(url: URL, audioEffect: AudioPlayerEffect) {
         self.url = url
         self.audioEffect = audioEffect
-        
         do {
             audioFile = try AVAudioFile(forReading: self.url as URL)
         } catch {
+            delegate.audioPlayerError(AudioPlayerError.audioFileError)
         }
     }
     
+    // play audio
     func playAudio() {
 
         // initialize audio engine components
@@ -37,28 +47,27 @@ class AudioPlayer {
         audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attach(audioPlayerNode)
         
+        // rate used to calculate audio playback time-out in closure below
         var rate: Float? = nil
+        
+        // create and append nodes. Used to build and connect audio node connections
         var audioNodes = [AVAudioNode]()
         audioNodes.append(audioPlayerNode)
         
+        // determine audio effect. Create and attached node and append to audioNodes array
         switch audioEffect {
         case .fast, .slow, .lowPitch, .highPitch:
-            print("fast slow low high")
             let changeRatePitchNode = AVAudioUnitTimePitch()
             switch audioEffect {
             case .fast:
-                print("fast")
                 changeRatePitchNode.rate = 1.5
                 rate = 1.5
             case .slow:
-                print("slow")
                 changeRatePitchNode.rate = 0.5
                 rate = 0.5
             case .highPitch:
-                print("highPitch")
                 changeRatePitchNode.pitch = 1000
             case .lowPitch:
-                print("lowPitch")
                 changeRatePitchNode.pitch = -1000
             default:
                 break
@@ -66,13 +75,11 @@ class AudioPlayer {
             audioEngine.attach(changeRatePitchNode)
             audioNodes.append(changeRatePitchNode)
         case .echo:
-            print("echo")
             let echoNode = AVAudioUnitDistortion()
             echoNode.loadFactoryPreset(.multiEcho1)
             audioEngine.attach(echoNode)
             audioNodes.append(echoNode)
         case .reverb:
-            print("reverb")
             let reverbNode = AVAudioUnitReverb()
             reverbNode.loadFactoryPreset(.cathedral)
             reverbNode.wetDryMix = 50
@@ -82,8 +89,10 @@ class AudioPlayer {
             break
         }
 
+        // output node
         audioNodes.append(audioEngine.outputNode)
         
+        // connect nodes
         for index in 0..<(audioNodes.count - 1) {
             audioEngine.connect(audioNodes[index] as AVAudioNode,
                                 to: audioNodes[index + 1] as AVAudioNode,
@@ -94,6 +103,7 @@ class AudioPlayer {
         audioPlayerNode.stop()
         audioPlayerNode.scheduleFile(audioFile, at: nil) {
             
+            // completion. Create timer to time-out audio playback
             var delayInSeconds: Double = 0
             
             if let lastRenderTime = self.audioPlayerNode.lastRenderTime, let playerTime = self.audioPlayerNode.playerTime(forNodeTime: lastRenderTime) {
@@ -110,29 +120,31 @@ class AudioPlayer {
             RunLoop.main.add(self.stopTimer!, forMode: RunLoop.Mode.default)
         }
         
+        // start audio
         do {
             try audioEngine.start()
-            delegate.audioStartedPlaying()
         } catch {
+            delegate.audioPlayerError(AudioPlayerError.audioEngineError)
             return
         }
         
-        // play the recording!
+        // play audio
         audioPlayerNode.play()
     }
     
+    // stop audio
     @objc func stopAudio() {
         
+        // inform delegate end of audio
         delegate.audioFinishedPlaying()
-
+        
+        // stop audio and timer
         if let audioPlayerNode = audioPlayerNode {
             audioPlayerNode.stop()
         }
-        
         if let stopTimer = stopTimer {
             stopTimer.invalidate()
         }
-                                
         if let audioEngine = audioEngine {
             audioEngine.stop()
             audioEngine.reset()
