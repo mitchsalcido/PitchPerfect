@@ -49,7 +49,9 @@ class AudioPlaybackViewController: UIViewController, AudioPlayerDelegate {
         super.viewWillDisappear(animated)
         
         // stop audio when view disappears
-        audioPlayer.stopAudio()
+        if let audioPlayer = audioPlayer {
+            audioPlayer.stopAudio()
+        }
     }
     
     // play button pressed
