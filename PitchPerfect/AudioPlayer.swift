@@ -6,7 +6,7 @@
 //
 /*
 About AudioPlayer.swift
- Class to handle audio playback. Requires url and audio effect which are provided at class initialization
+ Class to handle audio playback. Requires url and audio effect which are provided at class initialization. Requires valid delegate.
  */
 
 import AVFoundation

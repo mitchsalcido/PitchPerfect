@@ -4,16 +4,25 @@
 //
 //  Created by 1203 Broadway on 5/13/21.
 //
+/*
+About AudioRecorder.swift
+ Class to handle audio recording. Handles starting and stopping of recording. Requires valid delegate.
+ */
 
 import AVFoundation
 
 class AudioRecorder: NSObject, AVAudioRecorderDelegate {
     
+    // reference to delegate
     var delegate: AudioRecorderDelegate!
+    
+    // reference to Audio Recorder
     private var audioRecorder: AVAudioRecorder!
     
+    // record audio
     func record() {
         
+        // create a file-url to save recorder audio
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
         let pathArray = [dirPath, recordingName]
@@ -25,6 +34,7 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate {
             return
         }
         
+        // get session and create audioRecorder. Start recording
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
@@ -42,6 +52,7 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate {
         }
     }
     
+    // stop recording audio
     func stop() {
         
         if let audioRecorder = audioRecorder {
@@ -56,7 +67,9 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate {
         }
     }
     
+    // MARK: AVAudioRecorderDelegate function
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        // recording ended
         delegate.audioFinishedRecording(url: recorder.url)
     }
 }

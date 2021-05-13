@@ -6,7 +6,7 @@
 //
 /*
 About AudioPlaybackViewController.swift
- UIViewController subclass to handle starting and stopping audio playback and selecting effect to apply to audio
+ UIViewController subclass to handle starting and stopping audio playback and selecting effect to apply to audio.
  */
 
 import UIKit
@@ -39,10 +39,17 @@ class AudioPlaybackViewController: UIViewController, AudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // navbar ttitle and UI config
+        // navbar title and UI config
         title = "PitchPerfect - Playback"
         configureUI(state: .notPlaying)
         configButtonAlignment() // needed for smaller iOS devices to maintain proper object view aspect
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // stop audio when view disappears
+        audioPlayer.stopAudio()
     }
     
     // play button pressed
@@ -116,12 +123,16 @@ class AudioPlaybackViewController: UIViewController, AudioPlayerDelegate {
     }
     
     // MARK: AudioPlayerDelegate Functions
-    func audioPlayerError(_ error: AudioPlayerError) {
-        configureUI(state: .unknownPlaybackCondition)
-        self.showAlert(error)
+    func audioFinishedPlaying() {
+        
+        // done playing.
+        configureUI(state: .notPlaying)
     }
     
-    func audioFinishedPlaying() {
-        configureUI(state: .notPlaying)
+    func audioPlayerError(_ error: AudioPlayerError) {
+        
+        // playback error. Place UI in known state and show alert
+        configureUI(state: .unknownPlaybackCondition)
+        self.showAlert(error)
     }
 }
