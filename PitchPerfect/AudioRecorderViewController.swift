@@ -15,12 +15,12 @@ import AVFoundation
 class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate, AudioRecorderDelegate {
 
     // UI elements
-    @IBOutlet var audioPromptLabel: UILabel!
-    @IBOutlet var recordAudioButton: UIButton!
-    @IBOutlet var stopRecordingButton: UIButton!
+    @IBOutlet private var audioPromptLabel: UILabel!
+    @IBOutlet private var recordAudioButton: UIButton!
+    @IBOutlet private var stopRecordingButton: UIButton!
     
     // reference to AudioRecorder
-    var audioRecorder: AudioRecorder!
+    private var audioRecorder: AudioRecorder!
     
     // enum of recording state. Used to steer UI enable/disable states
     enum RecordAudioState {

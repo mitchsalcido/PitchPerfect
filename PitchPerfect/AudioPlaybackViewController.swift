@@ -18,16 +18,16 @@ class AudioPlaybackViewController: UIViewController, AudioPlayerDelegate {
     var audioURL: URL!
 
     // UI elements
-    @IBOutlet var fastButton: UIButton!
-    @IBOutlet var slowButton: UIButton!
-    @IBOutlet var highPitchButton: UIButton!
-    @IBOutlet var lowPitchButton: UIButton!
-    @IBOutlet var echoButton: UIButton!
-    @IBOutlet var reverbButton: UIButton!
-    @IBOutlet var stopButton: UIButton!
+    @IBOutlet private var fastButton: UIButton!
+    @IBOutlet private var slowButton: UIButton!
+    @IBOutlet private var highPitchButton: UIButton!
+    @IBOutlet private var lowPitchButton: UIButton!
+    @IBOutlet private var echoButton: UIButton!
+    @IBOutlet private var reverbButton: UIButton!
+    @IBOutlet private var stopButton: UIButton!
     
     // reference to AudioPlayer class. Handles details of audio playback
-    var audioPlayer: AudioPlayer!
+    private var audioPlayer: AudioPlayer!
     
     // enum of playback state. Used to steer UI enable/disable states
     enum AudioPlaybackState {

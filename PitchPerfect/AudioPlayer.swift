@@ -50,6 +50,13 @@ class AudioPlayer {
         // rate used to calculate audio playback time-out in closure below
         var rate: Float? = nil
         
+        // audio effects constants
+        let RATE_FAST: Float = 1.5          // playback rate, faster
+        let RATE_SLOW: Float = 0.5          // playback rate, slower
+        let PITCH_HIGH: Float = 1000        // playback pitch shift, up
+        let PITCH_LOW: Float = -1000        // playback pitch shift, down
+        let REVERB_WETDRYMIX: Float = 50    // playback reverb wet/dry mix, %
+        
         // create and append nodes. Used to build and connect audio node connections
         var audioNodes = [AVAudioNode]()
         audioNodes.append(audioPlayerNode)
@@ -60,15 +67,15 @@ class AudioPlayer {
             let changeRatePitchNode = AVAudioUnitTimePitch()
             switch audioEffect {
             case .fast:
-                changeRatePitchNode.rate = 1.5
-                rate = 1.5
+                changeRatePitchNode.rate = RATE_FAST
+                rate = RATE_FAST
             case .slow:
-                changeRatePitchNode.rate = 0.5
-                rate = 0.5
+                changeRatePitchNode.rate = RATE_SLOW
+                rate = RATE_SLOW
             case .highPitch:
-                changeRatePitchNode.pitch = 1000
+                changeRatePitchNode.pitch = PITCH_HIGH
             case .lowPitch:
-                changeRatePitchNode.pitch = -1000
+                changeRatePitchNode.pitch = PITCH_LOW
             default:
                 break
             }
@@ -82,7 +89,7 @@ class AudioPlayer {
         case .reverb:
             let reverbNode = AVAudioUnitReverb()
             reverbNode.loadFactoryPreset(.cathedral)
-            reverbNode.wetDryMix = 50
+            reverbNode.wetDryMix = REVERB_WETDRYMIX
             audioEngine.attach(reverbNode)
             audioNodes.append(reverbNode)
         default:
